@@ -1,0 +1,1890 @@
+# Machine Learning 
+
+##  Introduction
+
+### 	What is machine learning?
+
+####   Machine Learning definition
+
+Field of study that gives computers the ability to learn without being explicitly programmed.(1959）
+
+A computer program is said to  learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.(1998)
+
+Q1-1:(1)![image-20220801102324808](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220801102324808.png)
+
+#### Machine Learning algorithms classification
+
+- Supervised learning
+
+  *we're going to teach the computer how to do something*
+
+- Unsupervised learning
+
+  *we're going let it learn by itself*  
+
+### 	Supervised Learning
+
+#### 	Definition
+
+The idea is that, in supervised learning, in every example in our data set, we are told what is the "correct answer" that we would have quite liked the algorithms have predicted on that example.
+
+#### 	Problem classification
+
+- the regression problem
+
+  *by regression, that means that our goal is to predict a continuous valued output*
+
+- classification problem
+
+  *the goal is to predict a discrete valued output*
+
+Q2-1:(3)![image-20220801110132087](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220801110132087.png) 
+
+### Unsupervised Learning
+
+#### 	Definition
+
+Unsupervised Learning which is a learning setting where you give the algorithm a ton of data and just ask it to find structure in the data for us.
+
+Q3-1:(2,3)
+
+![image-20220801112429041](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220801112429041.png)
+
+#### 	algorithm
+
+- clustering algorithm
+
+- Cocktail party problem algorithm
+
+  ···
+
+##  Supervised Learning
+
+### 	Linear regression
+
+#### 	Notation
+
+![image-20220802091056511](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220802091056511.png)
+
+####   Linear regression model
+
+![image-20220803092625040](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803092625040.png)
+
+### 	Cost function
+
+#### 	Terminology
+
+![image-20220803092817738](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803092817738.png)
+
+#### 	How to go about choosing these parameters?
+
+what we want to do is come up with values for the parametes theta zero and theta one.
+
+![image-20220803093452829](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803093452829.png)
+
+![image-20220803095556327](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803095556327.png)
+
+this means find the values of theta zero and theta one that causes this expression to be minimized. And this expression depend on theta zero and theta one.
+
+![image-20220803100503206](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803100503206.png)
+
+Tips: 
+
+- the constant one half makes some of the math a little easier, which offsets the 2 brought about by the derivative .So minimizing one half of this sum should give  same values of the parameters theta zero, theta one.
+- the square makes these data of this figure to be positive.
+
+#### 	Cost function——squared error function
+
+![image-20220803101057857](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803101057857.png)
+
+This cost function J is also called the squared error function.
+
+### 	Cost function intuition I
+
+what the cost function is doing, and why we want to use it.
+
+#### 	Recap
+
+![image-20220803101803969](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803101803969.png)
+
+#### 	Visualization 
+
+Simplify the algorithm to understand J
+
+![image-20220803103832230](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803103832230.png)
+
+Each value of theta one corresponds to a different hypothesis, and we could then derive a different value of j of theta one. 
+
+### 	Cost function intuition II
+
+This section assumes that you're familiar with contour plot.
+
+#### 	Visualization 	
+
+Keep both of parameters θ\_0 and θ\_1
+
+![image-20220803111007783](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803111007783.png)
+
+Now what we really want is an efficient algorithm, a efficient piece of software for automatically finding the value of θ\_0 and θ\_1.
+
+### 	Gradient descent
+
+We previously defined the cost function J called gradient descent for minimizing the cost function J.
+
+#### 	Problem setup
+
+![image-20220803111607452](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803111607452.png)
+
+#### 	Visualization
+
+![image-20220803112154549](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803112154549.png)
+
+If you had started at this first point, you would have wound up at this this local optimum.
+
+but if you started just a little bit, a slightly different location, you would wound up at a very different local optimum. 
+
+#### 	Math definition of the gradient descent
+
+We're going to just repeatedly do this until convergence.
+
+![image-20220803112644595](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803112644595.png)
+
+We're going to update parameter thetaj by taking θ_j and subtracting from it α times this term over there。
+
+Detail unpack：
+
+1. ":=" or "="
+
+   ":=" to denote assignment, so it's assignment operator.
+
+   "=" is a truth assertion.
+
+2. α
+
+   this alpha here is a number that is called **learning rate.** And what alpha does is, it basically controls how big a step we take downhill with gradient descent.
+
+   so alpha is very large, then that corresponds to a very aggressive gradient descent procedure. And if alpha is very small, then we're taking little,little baby steps downhill.
+
+3. a derivative term about J
+
+4. Simultaneous updates
+
+   Simultaneously at the same time update theta0 and theta1. And this is a correct implementation.
+
+   ![](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803114558298.png)![image-20220803114658740](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220803114658740.png)
+
+​		  If you've already update theta0 but not update theta1, then you would be using the new value of theta0 to compute this derivative term.
+
+### 	Gradient descent intuition
+
+#### 	Descent intuition on the function J
+
+![image-20220804092839939](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804092839939.png)
+
+#### 	Derivative trem
+
+![image-20220804093403729](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804093403729.png)
+
+The situation one is that the theta_1 is on the right, so the derivative term which is a slope of this line is positive number. When  I update theta, theta is updated as theta minus alpha times a positive number, which means I'm actually going to decrease theta.
+
+The situation two is that the theta_1 is on the rleft, so the derivative term which is a slope of this line is negative number. When  I update theta, theta is updated as theta minus alpha times a negative number, which means I'm actually going to increase theta.
+
+Tips: Learning rate term alpha is a positive number.
+
+#### 	Learning rate alpha term
+
+![image-20220804094611222](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804094611222.png)
+
+We talk about if alpha is either too small, or if alpha is too large. 
+
+1. alpha is too small
+
+   ![image-20220804094848773](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804094848773.png)
+
+2. alpha is too large   
+
+![image-20220804094913741](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804094913741.png)
+
+
+
+![image-20220804095508890](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804095508890.png)
+
+When the learning rate alpha fixed, you will automatically take smaller and smaller steps until eventually you are taking very small steps, And finally converge to the local minimum.
+
+The square cost function that we came up with earlier and the gradient descent put them together. that will give us our first learning algorithm, linear regression algorithm.
+
+### 	Gradient descent for linear regression
+
+In this section, we're going to put together gradient descent with our cost function, and that will give us an algorithm for linear regression for fitting a straight line to our data.
+
+#### 	Recap
+
+![image-20220804100405569](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804100405569.png)
+
+####  Gradient descent for linear regression
+
+![image-20220804101531390](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804101531390.png)
+
+![image-20220804101814414](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804101814414.png)
+
+#### 	Cost function for liner regression
+
+We saw how depending on where you're initializing, you can end up with different local optima.
+
+![image-20220804102339900](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804102339900.png)
+
+But it turns out that the cost function for liner regression is always going to be a bow-shaped function like this. The technical terms for this is that is called a convex function.
+
+The function doesn't have any local optima except for the one global optimum.
+
+![image-20220804102212879](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804102212879.png)
+
+####  Linear regression algorithm in action
+
+![image-20220804102802170](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804102802170.png)
+
+![image-20220804103444590](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804103444590.png) 
+
+#### 	Batch Gradient Descent
+
+![image-20220804103600562](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804103600562.png)
+
+So the term batch gradient descent refers to fact that when looking at the entire batch of training examples.
+
+Some algorithms instead do not look at  the entire training set, but look at small subsets of the training sets at a time.
+
+## 	Linear algebra review
+
+## 	Linear regression with multiple variables
+
+This section start to talk about a new version of linear regression., which is more powerful one that works with multiple variables or with multiple features.
+
+### 	Multiple feature
+
+#### 	Introduction
+
+![image-20220804104429652](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804104429652.png)
+
+The linear regression that we developed, we only have a single feature or variable "x".  In the following example, we're going to have four features to try to predict the value y
+
+![image-20220804104635753](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804104635753.png)
+
+#### 	Notation
+
+![image-20220804104853216](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804104853216.png) 
+
+As a concrete example, x^（2）^is going to be a vector of the features for my second training example, [1416,3,2,40]. X^(2)^~3~ will refer to feature number three in this vector which is equal to 2.
+
+ ![image-20220804105250267](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804105250267.png)
+
+####  Form of hypothesis - multivariate linear regression. 
+
+![image-20220804110549872](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804110549872.png)
+
+To introduce a little bit of notation to simplify this hypothesis and convenience of notation, xsubscript0 is defined an additional sort of zero feature vector that always takes on the value of one.
+
+![image-20220804111236349](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804111236349.png)
+
+This also called multivariate linear regression. 
+
+### 	Gradient descent for multiple variables
+
+In this section will talk about how to fit the parameters of that hypothesis.
+
+#### 	Notation
+
+![image-20220804111952770](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804111952770.png)
+
+Instead of thinking of parameter as independent (of course you can think as well) number, we're going to more commonly write theta just a n+1 dimension vector.
+
+Again instead of thinking of J as a function of these n+1 numbers, we're going to more commonly write J as just a function of the parameter vector theta.
+
+![image-20220804112624810](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804112624810.png)
+
+#### 	Gradient descent for multiple variables(features)
+
+![image-20220804113358761](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220804113358761.png)
+
+### 	Gradient descent in practice I: Feature Scaling
+
+#### 	Problem
+
+![image-20220805105249623](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805105249623.png)
+
+Different features take on similar ranges of value, then gradient descents can converge more quickly.
+
+E.g. The contour s of the cost function J of theta will like this, which is these very tall skinny ovals. 
+
+![image-20220805110956338](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805110956338.png)
+
+Problem:
+
+Function J contour depends on its derivate about theta1 and thata2 which is the gradient. The value x1 is greater than x2, So the derivative of theta1 is greater than the derivative of pair theta2 and steeper in the theta1 direction.
+
+Result：
+
+it leads to more baby step and meandering around to take a long time to find this ay to the global minimum.
+
+#### 	Approach 
+
+In this setting, a useful approach to do is to scale the features,and can converge much faster.
+
+![image-20220805111554669](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805111554669.png)
+
+#### 	 Feature scalling
+
+![image-20220805111937651](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805111937651.png) 
+
+####  Mean normalization
+
+![image-20220805112500786](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805112500786.png)
+
+### 	Gradient descent in practice II: Learning rate - α
+
+#### 	How I go about choosing α ？
+
+![image-20220805151250938](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805151250938.png)
+
+![image-20220805151613255](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805151613255.png)	The plot is showing, is the value of your cost function after each iteration of gradient descent.
+
+​	If gradient descent is working correctly then J of theta should decrease after every iteration.  
+
+#### 	Automatic convergence test
+
+![image-20220805152128228](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805152128228.png)
+
+Choosing what this threshold is pretty difficult.
+
+#### 	Incorrectly situation
+
+- Situation 1
+
+![image-20220805155340504](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805155340504.png)
+
+- Situation 2
+
+  ![image-20220805155329991](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805155329991.png)
+
+![image-20220805155455058](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805155455058.png)
+
+####  Summary
+
+![image-20220805155844182](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805155844182.png)   
+
+### 	Features and polynomial regression
+
+#### 	Define new features
+
+![image-20220805160310967](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805160310967.png) 
+
+#### 	Polynomial regression
+
+![image-20220805161422848](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805161422848.png)
+
+#### 	Summary - choice of features
+
+![image-20220805161617027](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805161617027.png) 
+
+So you have a choice in what features to use, and by designing different features you can fit more complex functions to your data, than just fitting a straight line to the data.
+
+- Polynomial function
+- Appropriate insight
+
+### 	Normal equation
+
+#### 	Introduction
+
+![image-20220805163724019](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805163724019.png)
+
+In basically one step, you get to the optimal value .
+
+#### 	Intuition of normal equation
+
+![image-20220805164117022](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805164117022.png) 
+
+![image-20220805164929511](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805164929511.png)
+
+#### 	General case
+
+![image-20220805165347454](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805165347454.png)
+
+![image-20220805165503089](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805165503089.png)
+
+If you set theta equal to this, that's the value of theta that minimizes the cost function J  of theta for linear regression.
+
+Details: If you're using this normal equation method then feature scaling isn't actually necessary. Although of course if you're using gradient descent, then features scaling is still important.
+
+ ![](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805165915790.png)
+
+#### 	Comparation 
+
+  ![image-20220805170726425](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220805170726425.png)
+
+To summarize, so long as the number of features is not too large, the normal equation gives us a great alternative method to solve for the parameter theta. For those more sophisticated learning algorithms, we will have to resort to gradient descent for those algorithm.
+
+### 	Normal equation and non-invertibility
+
+![image-20220806082217163](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806082217163.png)
+
+#### 	Common causes about non-invertibility
+
+- Redundant features(linearly dependent)
+
+![image-20220806082539173](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806082539173.png)
+
+- Too many features(e.g. m≤n)
+
+![image-20220806082728052](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806082728052.png)
+
+## 	Logistic Regression
+
+### 	Classification
+
+#### 	Example 
+
+![image-20220806092046288](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806092046288.png)
+
+Often there is this intuition that the negative class is conveying the absence of something. Whereas 1, the positive class, is conveying the presence of something that we may be looking for.
+
+#### Binary classification 
+
+![image-20220806093241971](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806093241971.png)
+
+![image-20220806093050765](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806093050765.png)
+
+Applying linear regression to a classification problem ususally often isn't a great idea.
+
+![image-20220806093612955](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806093612955.png)
+
+### 	Hypothesis representaation
+
+#### 	Logistic function
+
+![image-20220806094452689](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806094452689.png)
+
+The sigmoid function asymptotes at 1, and asymptotes at 0 as Z, 
+
+#### 	Interpretation of hypothesis output
+
+![image-20220806095453488](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806095453488.png)
+
+Hypothesis function is the probability that y is equals to one given x.
+
+![image-20220806095802470](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806095802470.png)
+
+Given the H_x, we can  therefore compute the probability that Y is equal tp zero as well. 
+
+![image-20220806100005207](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806100005207.png)
+
+### 	Decision boundary
+
+#### 	Recap
+
+![image-20220806160459700](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806160459700.png)
+
+And the h_theta represent the probability of y is equals to 1.
+
+#### 	Prediction of theta and x![image-20220806161209698](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806161209698.png) 
+
+#### 	Intuition
+
+![image-20220806162538811](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806162538811.png)
+
+This decision boundary and a region where predict Y equals 1 versus Y equals 0., that's a property of the hypothesis and of the parameters of the hypothesis, and not a property of the data set.
+
+![image-20220806163036194](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806163036194.png)
+
+Now the most important thing is we need to use the value x or data to determine the value of the parameters. 
+
+But once we have particular value for the parameters: theta1,theta2 and so forth, then that completely defines the decision boundary.
+
+#### 	More complex example - Non-linear decision boundaries
+
+![image-20220806170441371](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806170441371.png) 
+
+#### 	More more complex example 
+
+If I have even higher order polynomial terms, so things like x1 squared,  x1 squared x2 and so forth, then it's possible to show that you can get even more complex decision boundaries.
+
+![image-20220806170949902](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806170949902.png)
+
+So how to automatically choose the parameters theta is necessary so that given a training set we can automatically sit the parameters to our data.
+
+### 	Cost function
+
+#### 	Problem
+
+![image-20220806172456475](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220806172456475.png)
+
+#### 	Square cost function 
+
+![image-20220807073517802](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807073517802.png)
+
+Beacause of the non-linear sigmoid function, J of theta ends up being a non convex function on the left plot if you were to define it as the squared const function.
+
+So what we need to do is to find a different cost function that is convex and so that we can apply a great algorithm like gradient descent and be guaranteed to find a global minimum. 
+
+####  Logistic regression cost function
+
+![image-20220807075559400](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807075559400.png)
+
+h_theta x range  is between 0 and 1, so we're just left with, this part of the curve.
+
+#### 	Logistic regression cost function
+
+- y is equal to 1
+
+![image-20220807080613970](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807080613970.png)
+
+- y is equal to 0
+
+![image-20220807081024944](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807081024944.png)
+
+If we certainly predict y is equal to 1(h_theta=1),but actually y is equal to 0, we'll penalize learning alogrithm with a very large cost.
+
+### 	Simplified cost function and gradient descent
+
+#### 	Logisitic regression cost function
+
+![image-20220807082616518](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807082616518.png)
+
+####  Simplify cost function
+
+![image-20220807083046197](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807083046197.png)
+
+The defination is just a more compact way of taking both of these expressions with just one line.
+
+#### 	Fit parameters theta by gradient descent
+
+![ ](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807093349816.png)
+
+#### 	Conclusion and comparation
+
+![image-20220807094304545](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807094304545.png)Because the definition of the hypothesis has changed, this is actually not the same thing as gradient descent for linear regression.
+
+### 	Advanced optimization
+
+#### 	Recap
+
+![image-20220807103952311](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807103952311.png)
+
+#### 	Optimization algorithm
+
+![image-20220807104402125](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807104402125.png)
+
+####  Example for v octave
+
+![image-20220807105335203](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807105335203.png)
+
+  ![image-20220807110226009](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807110226009.png)
+
+### 	Multi-class classification one-vs-all
+
+#### 	Multiclass classification example
+
+![image-20220807110609862](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807110609862.png)
+
+#### 	Comparation
+
+![image-20220807110643028](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807110643028.png)
+
+#### 	One versus rest
+
+![image-20220807111228669](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807111228669.png)
+
+We will take a training set, and turn this into three separate binary classification problems.
+
+We are going to essentially create a new, sort of fake training set, where classes 2 and 3 get assigned to the negative class, and class 1 gets assigned to the possitive class like showing on the right.![image-20220807111740757](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807111740757.png)
+
+So, to summariz what we have done is we fit 3 classifiers.
+
+![image-20220807111933491](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807111933491.png)
+
+![image-20220807112113990](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807112113990.png) 
+
+Finally we choose the maximum classifier when we input x, beacause it presents the hightes probability of class i (i: range 1 to 3 in this example).
+
+##  Regularization
+
+### 	The problem of overfitting
+
+####  Example: linear regression
+
+![image-20220807145129923](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807145129923.png)
+
+"Generalize" means how well a hypothesis applies even to new examples.
+
+#### 	Example: Logistic regrssion
+
+![image-20220807151255085](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807151255085.png)
+
+#### 	Addressing overfitting 
+
+If we have a lot of features and very little training data, then overfitting can become a problem.
+
+![image-20220807154648788](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807154648788.png)
+
+There are two main options for things that we can do.
+
+![image-20220807155155495](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807155155495.png)
+
+### 	Cost function with regularization
+
+#### 	Intuition
+
+![image-20220807155633072](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807155633072.png)
+
+We penalize just theta 3 and theta4, and when both of these were close to 0, we wound up with a much simpler hypothesis. In this way, we could keep all these features without deleting them.
+
+#### 	Regularization   
+
+In regularization, what we going to do is modify cost function to shrink all of my parameters, because I don't know which one or two we should shrink.![image-20220807161133032](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807161133032.png)
+
+We're going to add an extra regularization term at the end to shrink every single parameter.
+
+By the way, the summation here starts from one, so I am not actually going penalize theta 0 being large. But in practice, it makes very little difference to results.
+
+![image-20220807163116216](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807163116216.png)
+
+What lambda(regulation parameter) does, is controls a trade off between two different goals.
+
+The first goals captured by the first term of the objective, is that we would like to fit the training data well. And the second goal is we want to keep the parameters small.
+
+ ![image-20220807163217191](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807163217191.png)
+
+### 	Regularization parameter lambda setting
+
+- lambda too large
+
+![image-20220807163420731](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807163420731.png) 
+
+- lambda too small
+
+  Cannot penalize these theta, and would be overfitting or high variance.
+
+### 	Regularized linear regression
+
+#### 		Recap
+
+![image-20220807195413952](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807195413952.png)
+
+![](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807201021045.png)
+
+#### 	Regularized gradient descent
+
+![image-20220807200107481](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807200107481.png)
+
+When we're using regularized linear regression, what we're doing is on every iteration, we're multiplying theta j by a number that's a little bit less than one. And then we're performing similar update as before.
+
+#### 	Regularized normal equation
+
+ ![image-20220807201340859](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807201340859.png)
+
+####  Non-invertibility (optional/advanced)
+
+Using regularization also can take care of any non-invertibility issues of the X transpose X matrix as well.
+
+![image-20220807202234236](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807202234236.png)
+
+### 	Regularized logistic regression
+
+In this section ,we'll show how we can adapt both of those techniques, both gradient descent and the more advanced optimization techinque.
+
+#### 	Intuition
+
+![image-20220807203610717](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807203610717.png)
+
+#### 	Regularized radient descent for logistic regression
+
+![image-20220807204013647](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807204013647.png)
+
+![image-20220807205358759](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220807205358759.png)
+
+##  Neural Networks: Representation
+
+### 	Non-linear hypotheses
+
+Incluing these higher order polynomial features when your original feature set n is large, this really dramastic blows up your feature space and this doesn't seem like a good way to come up with additional features with which to bulid non-lnear classfiers when n is large.
+
+![image-20220808080819410](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808080819410.png)
+
+![image-20220808082256556](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808082256556.png)
+
+### 	Nerual network background
+
+![image-20220808084632151](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808084632151.png)
+
+### 	Model represent I
+
+#### 	Neuron
+
+![image-20220808085522352](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808085522352.png) 
+
+![image-20220808085740313](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808085740313.png)
+
+#### 	Nuron model: Logisitic unit
+
+![image-20220808090158319](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808090158319.png)
+
+#### 	Neural network
+
+![image-20220808090356243](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808090356243.png)
+
+#### 	Notation
+
+![image-20220808093148026](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808093148026.png)
+
+### 	Model representation II
+
+####  Forward propagation
+
+![image-20220808161557348](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808161557348.png)
+
+#### 	Example: Logistic regression
+
+![image-20220808162120427](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808162120427.png) 
+
+![image-20220808162525799](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808162525799.png)
+
+layer1 is the raw feature and layer2 is the feature as the logistic function. You can end up with a better hypothesis than if you were constrained to use raw features layer1. In this example, we can use this hidden there to computer more complex features to feed into the final output there.
+
+#### 	Other network architectures
+
+![image-20220808163430949](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220808163430949.png)
+
+Architectures is means how the different neurons are connected to each other.
+
+### 	Examples and intuitions I
+
+#### 	Example： AND,OR
+
+![image-20220812073343737](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812073343737.png)
+
+​    ![image-20220812073843772](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812073843772.png)
+
+ 
+
+![image-20220812074853466](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812074853466.png)
+
+### Examples and intuitions II 
+
+#### Example： NOT
+
+![image-20220812082130870](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812082130870.png)
+
+#### ( NOT x~1~ ) AND (NOT x~2~)
+
+![image-20220812082351959](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812082351959.png)
+
+#### 	Example: XNOR
+
+![image-20220812082945429](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812082945429.png)
+
+### 	Multi-class classification
+
+![image-20220812085733199](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812085733199.png)
+
+ ![image-20220812085912546](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812085912546.png)
+
+## 	Neural Networks Learning
+
+### 	Cost function
+
+#### 	Notation
+
+![image-20220812090212959](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812090212959.png) 
+
+#### 	Classification for binary and classification output
+
+![image-20220812091059459](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812091059459.png)
+
+#### 	Cost function for logistic regression
+
+![image-20220812092404952](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812092404952.png)
+
+ We don't sum the term corresponding to where i is equal to 0, bias terms. But even if u  were to sum over, i equals 0 to s_l, it work about the same and it doesn't make a big difference. 
+
+### 	Backpropagation algorithm
+
+For more than one output unit, such as K output unit.![image-20220812094314753](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812094314753.png) 
+
+#### 	Forward propagation
+
+![image-20220812094642916](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812094642916.png)
+
+####  Backpropagation algorithm intuition
+
+![image-20220812104035277](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812104035277.png)
+
+The backpropagation algorithm comes from the fact that we start by computing the delta term for the output layer and then we go back a layer and compute the delta terms for the third hidden layer and we go back another step to compute delta 2.
+
+Tips:
+
+- Derivation of sigmoid function is equals to g(x)[1-g(x)]
+- a^(3)^ is equal to g(z^(3)^) 
+- There is no delta1 term, because the first layer corresponds to the input layer and that's just feature we observed in our training sets.
+- In this case, we just compute a partial derivate with a date set of training set,  in the next section, we will calculate from 1 to m all of the training set.
+
+#### 	Backpropagation algorithm
+
+Firstly, we'll choose  random theta by using the forward algorithm and compute the error delta. And then using the backpropagation algorithm to shape the theta to minimize the cost function.
+
+![image-20220812110738546](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812110738546.png)
+
+Finally, we use the partial derivative, D^(l)^~ij~, in the gradient descent, or in one of the advanced optimization algorithm.
+
+![image-20220812111349411](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812111349411.png)
+
+Tips:
+
+- Triangle symbol is the capital Greek alphabet delta, and will be used to compute the partial derivative theta l~ij~ of J of theta
+
+- "for i 1 to m", in this words, the "i" is used to circulate and means to the set i data of training set.
+
+  lowercase delta's "i" is different from that. It represents the     active term unit of one layer.     
+
+### 	Backpropagation intuition
+
+#### 	Forward propagation
+
+![image-20220812143746015](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812143746015.png)
+
+#### 	Cost function
+
+For only one output unit: ![image-20220812144053680](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812144053680.png)
+
+For more than one output unit:![image-20220812144135964](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812144135964.png)
+
+![image-20220812144817483](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812144817483.png)Cost function (cost i)measures how well is the network doing on correctly predicting example i, and how close is the output to the actually observed label yi.
+
+#### 	Backpropagation
+
+![image-20220812170720864](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812170720864.png)
+
+Backpropagation is computing these delta superscript l subscript j terms, and we can think of these as the call error of the activation value that we got for unit j in the l^th layer.
+
+We mostly want to know that how well is the effect of parameter theta to the cost function in partial derivative, and the delta plays a immediate role in that partial derivative.
+
+![image-20220812171141585](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812171141585.png)
+
+Tips:
+
+- The meaning of delta can through this website:[(42条消息) darknet中反向传播原理（l.delta究竟在计算什么）_仙女修炼史的博客-CSDN博客](https://blog.csdn.net/weixin_45209433/article/details/107974655) and [(42条消息) “反向传播算法”过程及公式推导（超直观好懂的Backpropagation）_aift的博客-CSDN博客_反向传播算法](https://blog.csdn.net/ft_sunshine/article/details/90221691) and**[机器学习：一步步教你理解反向传播方法 (yongyuan.name)](https://yongyuan.name/blog/back-propagtion.html)** or understanding.
+- These bias terms don't end up being part of the calculation needed to compute a derivative.(there is no connection between the δ^l^~j~ and δ^l+1^~0~ when we calculate the  δ^l^~j~)
+
+  Backpropagation is the partial derivative of the loss function to the weight, in order to find a specific value, the chain rule when the function is derived is used. According to the size of the derivative value, the weight size has an impact on the loss function, which is convenient for the next step of weight update, and then minimizes the loss function, and finds a more appropriate weight, that is, to find a better solution in the selected model space! 
+
+### 	Implementation note: Unrolling parameters 
+
+### 	Gradient checking
+
+####  Numerical estimation of gradients
+
+![image-20220812193839890](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812193839890.png)
+
+When the theta is parameter vector:
+
+![image-20220812193941583](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812193941583.png)
+
+Code implement
+
+![image-20220812200101773](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812200101773.png)
+
+#### 	Numerical gradient checking
+
+![image-20220812200305779](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812200305779.png)
+
+Gradient is a very computationally expensive and a slow way to try to approximate the derivative. Whereas in contrast, the backpop is the thing that we talked about earlier for computing Derivative. 
+
+### Random initialization
+
+#### 	Zero initialization
+
+![image-20220812212202905](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812212202905.png)
+
+ This is a highly redundant representation. Register regression only gets to see one feature because all of these at the same. This problem is sometimes called problem of symmetric weights.
+
+#### 	Random initialization
+
+![image-20220812212830676](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812212830676.png)
+
+### 	Putting it together 
+
+#### 	Training a neural network: pick a network
+
+![image-20220812213051823](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812213051823.png)
+
+Definition:
+
+![image-20220812215354643](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812215354643.png)
+
+#### 	Training a neural network: six steps 
+
+![image-20220812220826272](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812220826272.png) 
+
+![image-20220812221010759](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812221010759.png)
+
+![image-20220812221414060](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812221414060.png)
+
+###  Autonomous driving example
+
+## 	Advice for applying machine learning
+
+### 	Deciding what to try next
+
+####  Debugging a learning algorithm
+
+![image-20220812225051919](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812225051919.png)
+
+Problem:
+
+- How to evaluate learning algorithms.
+
+- Machine learning diagnostic
+
+  ![image-20220812225355414](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812225355414.png)
+
+### 	Evaluating a hypothesis
+
+#### 	How to evaluate?
+
+![image-20220812225738146](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812225738146.png)
+
+it would be better to randomly shuffle or to randomly reorder the examples in data set.
+
+#### 	Training/testing procedure for linear regression
+
+![image-20220812230217888](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812230217888.png)
+
+#### 	Training/testing procedure for logistic regression
+
+  ![image-20220812230747443](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220812230747443.png)
+
+### 	Model selection and training/validation/test sets
+
+#### 	Overfitting example 
+
+![image-20220813093652739](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813093652739.png)
+
+#### 	Model selection
+
+![image-20220813095035951](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813095035951.png)Selecting your model using this test set as though selecting degree of polynomial on the test set, and then using the same test set to report the error, most of machine learning tend to advise against that.
+
+#### training/validation/test sets  
+
+![image-20220813095414552](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813095414552.png) 
+
+![image-20220813095716818](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813095716818.png)
+
+###  Diagnosing bias versus variance
+
+how to look an algorithm and evaluate or diagnose what we might have bias and variance issue.
+
+#### 	Bias/Variance
+
+![image-20220813100556083](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813100556083.png)
+
+ ![image-20220813101220814](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813101220814.png)
+
+#### 	Diagnosing bias vs. variance
+
+![image-20220813101732278](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813101732278.png)
+
+### 	Regularization and bias/variance
+
+#### 	Linear regression with regularization
+
+![image-20220813103849276](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813103849276.png)
+
+How could we automatically choose a good value for the regularization parameter lambda?  
+
+#### Definition the data sets in rugularization situation
+
+![image-20220813104216741](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813104216741.png)We define training/cv/test error without using the regularizaion parameter.
+
+#### 	Choosing the regularization parameter lambda	
+
+![image-20220813104602487](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813104602487.png) 
+
+#### 	Bias/variance as a function of the regularization parameter lambda
+
+How cross-validation and training error vary as we vary the regularization parameter lambda.
+
+We define training/cv/test error without using the regularizaion parameter. 
+
+![image-20220813105406465](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813105406465.png)
+
+### 	Learning curve
+
+Learning curves is often a very useful thing to plot, If either you wanted to sanity check that your algorithm is working correctly, or if you want to prove the performance of the algorithm.
+
+#### 	Training set error
+
+- Normal situation
+
+![image-20220813151307360](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813151307360.png)
+
+- High bias situation
+
+  ![image-20220813152344294](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813152344294.png)
+
+- High variance
+
+  ![image-20220813153217526](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813153217526.png)
+
+#### 	Cross validation (test) error
+
+- Normal situation
+
+![image-20220813151537829](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813151537829.png)
+
+- High bias situation
+
+  ![image-20220813152200184](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813152200184.png)
+
+- High variance
+
+![image-20220813153241874](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813153241874.png)
+
+Tips:
+
+- We can visit the [(42条消息) 学习曲线-Learning Curve_GitzLiu的博客-CSDN博客_学习曲线](https://blog.csdn.net/GitzLiu/article/details/82634295) for understanding the learning curve.
+- The training set present the known data, and the test set(cv set is better because it's used to choose what is  the best approach, and then we test it generalization in test set ) present the unknown data. If training set error is small, that means the model can predict the known data correctly. If test set error is small, that means the model can predict the unknown data correctly.
+- The ideal situation is to find a convergence between training error and test error, and low error both training error and test error.
+
+### 	Deciding what to try next(revisited)
+
+####  	Debugging a learning algorithm
+
+ ![image-20220813164212385](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813164212385.png)
+
+#### 	Neural networks and overfitting
+
+![image-20220813164308413](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813164308413.png) 
+
+## 	Machine learning system design
+
+### 	Prioritizing what to work on: Spam classification example
+
+#### 	Building a spam classifier
+
+![image-20220813172106749](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813172106749.png) 
+
+#### 	Choosing features x 
+
+![image-20220813172736002](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813172736002.png)
+
+#### 	How to spend your time to make it have low error
+
+![image-20220813173108408](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813173108408.png)
+
+### 	Error analysis
+
+#### 	Recommended approach
+
+![image-20220813174618717](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813174618717.png)
+
+#### 	Error analysis
+
+![image-20220813180011814](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813180011814.png)
+
+#### 	Numerical evaluation
+
+ The numerical evaluation, such as cross validation error, is important to analyze and evaluate if this(for example stemming) is likely to improve performance.
+
+![image-20220813180846547](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813180846547.png)
+
+#### 	Summary
+
+To summary, make a quick and dirty implementation or algorithm incorporated a single rule number evaluation metric. This can then be a vehicle for you to try out different ideas and quickly see if the different ideas you're trying out are improving the performance of your algorithm
+
+### 	Error metrics for skewed classes
+
+#### 	Skewed classes （The Long Tail）：Cancer classification example
+
+![image-20220813221153701](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813221153701.png)
+
+#### 	Precision/recall
+
+![image-20220813222005350](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813222005350.png)
+
+![image-20220813222645211](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813222645211.png)
+
+If there are an algorithm that always predicts y is equal to 0. To deal with this problem, we use precision/recall to evaluate a classifier.
+
+![image-20220813222836552](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813222836552.png)
+
+Tips:
+
+- In the definition of precision and recall, we usually use y is equal to 1 in presence of rare class that we want to detect.
+
+- Precision (查准率，预测准确的概率)is the correct rate of the prediction;
+- Recall （查全率，预测全面的概率）is the coverage rate(in ) of our positive prediction;
+
+### 	Trading off precision and recall
+
+#### 	Trading off precision and recall 
+
+![image-20220813225933175](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813225933175.png)
+
+#### 	How to compare precision/recall between different algorithm?
+
+![image-20220813230322859](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813230322859.png)
+
+- Average
+
+![image-20220813230521548](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813230521548.png)
+
+![image-20220813230600682](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813230600682.png)
+
+- F score
+
+#### 	F score
+
+![image-20220813230637569](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813230637569.png)
+
+![image-20220813230903573](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813230903573.png)
+
+#### 	Summary 
+
+To summary, we could choose different threshold, and then evaluate it in  cross validation set to compute the F score for deciding which threshold is best. 
+
+### 	Data for machine learning
+
+![image-20220813232100365](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813232100365.png)
+
+#### 	Large date rationale 
+
+![image-20220813233317089](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813233317089.png)
+
+![image-20220813233112418](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220813233112418.png) 
+
+## 	Support Vector Machines
+
+### 	Optimization objective 
+
+#### 	Alternative view of logistic regression  
+
+![image-20220814092103668](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814092103668.png)
+
+![image-20220814092840075](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814092840075.png)
+
+#### 	Support vector machine: optimization objective(cost fuction)
+
+![image-20220814093759621](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814093759621.png)
+
+Just a different way of parametrizing how much we care about optimizing the first term A versus how much care about optimizing the second term B. 
+
+And it's not said that C is equal to 1 over lambda, we rather that if C is equal to 1 over lambda, then these two optimization objectives should give the same value,the same optimal value of theta.
+
+The overall optimization objective function for the SUPPORT VECTOR MACHINE:
+
+![image-20220814094232098](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814094232098.png)
+
+When you minimize that function then what you have is the parameters learned by SVM.
+
+#### 	SVM hypothesis for prediction
+
+Finally unlike logistic regression, The Support Vector Machine doesn't out put the probability. Instead what we have this cost function which we minimize to get parameters theta.
+
+And what Support Vector Machine does is it just makes protection.
+
+![image-20220814094923786](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814094923786.png)
+
+### 	Large Margin intuition
+
+Sometimes people call SVM as large margin classifiers.
+
+![image-20220814100013134](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814100013134.png) 
+
+![image-20220814100342983](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814100342983.png)
+
+#### 	SVM decision boundary
+
+If C is a large number:
+
+![image-20220814104306639](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814104306639.png)
+
+#### 	Margin
+
+![image-20220814104658994](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814104658994.png)
+
+This large margin classification setting, in the case of when C that regularization concept is very larg.
+
+And the line is made by parameter theta.
+
+![image-20220814105131136](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814105131136.png)
+
+### 	The mathematics behind large margin classification
+
+![image-20220814110229958](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814110229958.png)
+
+![image-20220814112001536](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814112001536.png)
+
+Tips:
+
+![image-20220814112106038](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814112106038.png)
+
+### 	Kernels I
+
+#### 	Kernel function: similarity function
+
+![image-20220814113819870](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814113819870.png)
+
+![image-20220814115100720](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814115100720.png)
+
+Tips:
+
+- There is a website for understanding:[详解SVM模型——核函数是怎么回事 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/261061617)
+
+  
+
+#### 	Example
+
+![image-20220814115451259](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814115451259.png) 
+
+![image-20220814122939459](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814122939459.png)
+
+### 	Kernel II
+
+####  Landmark
+
+![image-20220814160856506](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814160856506.png)
+
+#### 	SVM with Kernels
+
+![image-20220814161208716](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814161208716.png)
+
+####    	SVM  Parameters
+
+![image-20220814162302386](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814162302386.png)
+
+### 	Using a SVM
+
+![image-20220814165653146](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814165653146.png)
+
+#### 	Kernel (similarity) function: feature scaling 
+
+![image-20220814172508241](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220814172508241.png)
+
+#### Other choices of kernel
+
+![image-20220815105416677](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815105416677.png)
+
+#### 	Multi-class classification
+
+![image-20220815105730521](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815105730521.png)
+
+#### 	Logistic regression versus SVMs
+
+- If the number of features n is large, and smaller training set m:
+
+  ![image-20220815110033683](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815110033683.png)
+
+- If n is small, m is intermediate:
+
+![image-20220815110411627](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815110411627.png)
+
+- If n is small , m is  astronomy large :
+
+![image-20220815110648965](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815110648965.png)
+
+![image-20220815111022899](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815111022899.png)
+
+## 	Clustering
+
+### 	Unsupervised learning introduction
+
+#### 	Supervised learning vs. unsupervised learning
+
+![image-20220815111345919](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815111345919.png)
+
+![image-20220815114144557](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815114144557.png)
+
+#### 	Application
+
+![image-20220815114354007](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815114354007.png)
+
+### 	K-means algorithm
+
+####  Intuition: inner loop of K means
+
+1. Cluster centroids and point Assignment
+
+![image-20220815114827104](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815114827104.png)
+
+Assign each point depending on whether it is closer to the red cluster centroid or the blue cluster centroid.![image-20220815114949632](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815114949632.png)
+
+2. Move centroid 
+
+   Move the cluster centroid to the average of the points colored the same colour.
+
+![image-20220815115412221](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815115412221.png)
+
+3. Recycle the step 1: Assigning point again
+
+![image-20220815115643710](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815115643710.png)
+
+4. Recycle the step 2: move the centroid again
+
+![image-20220815115808695](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815115808695.png)
+
+Keeping running additional iterations of K means:
+
+![image-20220815115917649](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815115917649.png)
+
+At this point, K means has converges.
+
+#### 	K-means algorithm
+
+![image-20220815120243755](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815120243755.png)
+
+1. Cluster assignment step:
+
+![image-20220815120804839](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815120804839.png)
+
+Tips:
+
+- C^(i)^ means that the index of the cluster centroid which is minimum distance from x^(i)^  to cluster k  (C^(i)^=k)
+- But of course minimizing squared distance, and minimizing this distance that should gave you the same value of c^(i)^
+
+2.  Move centroid:
+
+![image-20220815121951511](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815121951511.png)
+
+#### 	K-means for non-separated cluster
+
+![image-20220815122302539](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815122302539.png)
+
+### Optimization objective	
+
+#### 	Distortion cost function
+
+![image-20220815160840122](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815160840122.png)
+
+#### 	Mathematical K-means algorithm 
+
+![image-20220815161609548](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815161609548.png)
+
+What it does is it first minimizes J with respect to the variable C, and then minimizes J with respect the variables μ. and then it keeps on iterating.
+
+### 	Random initialization
+
+#### 	Random initialization
+
+![image-20220815163325410](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815163325410.png)
+
+#### 	Local optima
+
+![image-20220815163506151](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815163506151.png)
+
+#### 	Run K-means a lot of times
+
+![image-20220815163723308](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815163723308.png)
+
+![image-20220815163807431](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815163807431.png)
+
+When the number of clusters K is relatively small, random initialization could make a huge difference in terms of making sure do a good job minimizing the distortion function and giving a good clustering.
+
+### 	Choosing the number of cluster
+
+###  Elbow method
+
+![image-20220815164954574](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815164954574.png)
+
+### 	Method for choosing K by purpose
+
+![image-20220815165223690](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815165223690.png)
+
+## 	Dimensionality Reduction
+
+### 	Motivation I: Data Compression
+
+![image-20220815170331181](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815170331181.png)
+
+#### 	Data compression
+
+- 2D to 1D
+
+![image-20220815170843288](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220815170843288.png)
+
+- 3D to 2D
+
+![image-20220816075330423](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816075330423.png)
+
+### 	Motivation II: Data Visulization
+
+![image-20220816075907600](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816075907600.png)
+
+#### 	Reduce data from 50D to 2D
+
+![image-20220816080032663](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816080032663.png)
+
+![image-20220816080309303](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816080309303.png)
+
+### 	Principal component analysis problem formulation	
+
+####  Projection error
+
+![image-20220816080829967](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816080829967.png)
+
+PCA is it tries to find a lower-dimensional surface onto which to project the data, so that the sum of the squares of these little blue line segments is minimized.
+
+Tips:
+
+- Before applying PCA, it's standard practice to first perform mean normalization and feature scaling so that the features x_1 and x_2 should have zero mean and should have comparable ranges of values.
+
+#### 	PCA problem
+
+![image-20220816093605120](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816093605120.png)
+
+#### 	PCA is not linear regression
+
+![image-20220816093914251](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816093914251.png)
+
+When you're doing linear regression there is this distinguished variable y that we're trying to predict, and all that linear regression is about is taking all the values of X and try to use that to predict Y.
+
+And PCA is no special variable Y that we're trying to predict.
+
+### 	Principal component analysis algorithm
+
+#### 	Algorithm： Singular Value Decomposition
+
+![image-20220816165712410](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816165712410.png)
+
+Tips：
+
+![image-20220816165926604](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816165926604.png)
+
+![image-20220816170137791](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816170137791.png)
+
+#### 	Algorithm steps
+
+![image-20220816170554370](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220816170554370.png)
+
+### 	Reconstruction from compressed representation
+
+![image-20220817075945165](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220817075945165.png)
+
+### 	Choosing the number of principal components
+
+#### 	Choosing k
+
+![image-20220817080753341](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220817080753341.png)
+
+#### 	Algorithm
+
+ ![image-20220817105835594](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220817105835594.png)
+
+The right side algorithm is only calculated SVD once, then we can  choose k from 1 to m and verified it whether it less than 0.01 or greater than 0.99. So that you do not need to utilize a SVD over and over when selecting a value k like left side one, and it make a greater efficiency to compute . 
+
+![image-20220818082426383](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818082426383.png)
+
+### 	Advice for applying PCA
+
+#### 	Supervised learning speedup
+
+![image-20220818084543622](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818084543622.png)
+
+That means we run the PCA to compute the U~reduce~ only in the training set. But we apply this mapping to the example x~cv~ and x~test~ so that we could compute  z~cv~ and z~test~.
+
+#### 	Application of PCA
+
+![image-20220818092401881](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818092401881.png)
+
+#### 	Bad use of PCA： To prevent overfitting
+
+![image-20220818093403688](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818093403688.png)
+
+#### 	PCA is sometimes used where it shouldn't be
+
+Only you learning algorithm is running slowly or only if the memory requirement or the disk space requirement is too large.
+
+![image-20220818094550721](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818094550721.png)
+
+## 	Anomaly detection
+
+### 	Problem motivation
+
+![image-20220818095231742](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818095231742.png)
+
+#### 	Density estimation
+
+![image-20220818095621575](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818095621575.png)
+
+#### 	Anomaly detection example
+
+![image-20220818100102854](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818100102854.png)
+
+### 	Gaussian(normal distribution) distribution
+
+![image-20220818100540669](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818100540669.png)
+
+#### 	Gaussian distribution example
+
+![image-20220818100648596](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818100648596.png)
+
+#### 	Parameter estimation
+
+![image-20220818103821219](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818103821219.png)
+
+### 	Anomaly Detection Algorithm
+
+#### 	Density estimation
+
+![image-20220818104937166](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818104937166.png)
+
+#### 	Anomaly detection algortihm
+
+![image-20220818105716072](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818105716072.png)
+
+Tips:
+
+- Choosing the features that describe general properties of the things that you're collecting data on
+
+#### 	Anomaly detection example
+
+![image-20220818110947033](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220818110947033.png)
+
+The normal or non-anomalous data always in the top or higher height above the surface in the left, whereas all the points far out here, all of those points have very lo probability s that we gonna flag those points as anomalous.
+
+### 	Developing and evaluating an anomaly detection system
+
+#### 	The importance of real-number evaluation
+
+![image-20220819084630446](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220819084630446.png)
+
+#### 	Aircraft engines motivating example
+
+![image-20220819085032388](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220819085032388.png)
+
+#### 	Algorithm evaluation
+
+![image-20220819094649196](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220819094649196.png)
+
+We assuming most of the training set are normal aircraft engines, most of them 're not anomalies.
+
+If you have a very skewed data set,then predicting y equals 0 all the time will have very high classification accuracy. 
+
+![image-20220819095724541](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220819095724541.png)
+
+We can also use cross validation set to choose parameter epsilon and then pick the value of epsilon that maximizes f1 score
+
+### 	Anomaly detection versus supervised learning
+
+#### 	How to choose anomaly detection or supervised learning
+
+![image-20220819110153974](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220819110153974.png)
+
+#### 	Situation summary
+
+![image-20220819110520291](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220819110520291.png)
+
+### 	Choosing what features to use
+
+#### 	Non-gaussian features
+
+This like the down side of the fig is a very asymmetric distribution, it has a peak way off to one side, and what we're often do is play with different transformations of the data, in order to more it look more Gaussian like the up fig, and might work a bit better.
+
+![image-20220819154204571](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220819154204571.png)
+
+#### 	Error analysis for anomaly detection
+
+![image-20220819161531913](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220819161531913.png)
+
+Look at the mistakes and the anomaly that the algorithm is failing to flag, and then see if that inspires you to create some new feature.
+
+#### 	Example
+
+![image-20220819162423452](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220819162423452.png)
+
+### 	Multivariate Gaussian distribution
+
+#### 	Motivating example
+
+- Anomaly detection algorithm
+
+![image-20220823082409582](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823082409582.png)
+
+ But the anomaly detection algorithm is doing that it is not realizing that this blue ellipse shows the high probability region instead what it thinks is the the pink region that the green cross there has pretty high probability
+
+![image-20220823082909693](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823082909693.png)
+
+![image-20220823083143249](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823083143249.png)
+
+#### 	Multivariate Gaussian (Normal) distribution
+
+![image-20220823083543474](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823083543474.png)
+
+#### 	Multivariate Gaussian(Normal) examples: Changing the sigma
+
+![image-20220823090343184](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823090343184.png)
+
+![image-20220823090444686](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823090444686.png)
+
+![image-20220823090521859](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823090521859.png)
+
+![image-20220823090635956](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823090635956.png)
+
+![image-20220823090714304](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823090714304.png)
+
+#### 	Multivariate Gaussian(Normal) examples: Changing  μ
+
+![image-20220823090927169](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823090927169.png)
+
+### 	Anomaly detection using the multivariate Gaussian distribution
+
+#### 	Parameter fitting
+
+![image-20220823101954441](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823101954441.png)
+
+#### 	Anomaly detection with the multivariate Gaussian
+
+![image-20220823102132954](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823102132954.png)
+
+#### 	Relationship to original model
+
+- Original model 
+
+  the contours of the Gaussian are always axis aligned
+
+![image-20220823102633205](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823102633205.png)
+
+- Multivariate Gaussian
+
+![image-20220823102716376](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823102716376.png)
+
+The Original model is the special situation of the multivariate gaussian that the variance matrix sigma has only 0 elements off the diagonals.
+
+#### 	Original model versus Multivariate Gaussian
+
+![image-20220823104712429](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823104712429.png)
+
+Tips:
+
+- If m<n, the rank of sigma is less than n, so the sigma is non-invertible. 
+- If you've highly redundant(linearly dependent) features like these, where if x3 is equal to x4 + x5, well x3 doesn't contain any extra information, than sigma also may be non-invertible.
+
+## 	Recommender Systems
+
+### 	Problem formulation
+
+![image-20220823111545641](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823111545641.png)
+
+### 	Content-based recommendations
+
+#### 	Example
+
+![image-20220823154124957](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823154124957.png)
+
+theta's superscript j present the user j because theta is learning from the user, but the x's superscript i present the movie i that is different movie style.
+
+So all we doing here is we are applying a different copy of essentially linear regression for each user.
+
+#### 	Problem formulation
+
+More formally, there are some notation about the parameters.
+
+![image-20220823155153817](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823155153817.png)
+
+ It is just like the least squares regression(linear regression), where we want to choose the parameter vector theta j to minimize this type of squared error term.
+
+And if you want, you could also add in regularization term
+
+![image-20220823155540144](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823155540144.png)
+
+ To simplify the formula, we can delete the m because it doesn't influent the result of the minimize. 
+
+![image-20220823155837066](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823155837066.png)
+
+#### 	Optimization objective
+
+![image-20220823160520332](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823160520332.png)Tips:
+
+- In regularization term, n is the number of the movies rated by user j, and k is the   movie k rated by user
+
+#### 	Summary: content-based recommendation
+
+![image-20220823161431742](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823161431742.png)
+
+### 	Collaborative filtering
+
+#### 	Problem motivation
+
+ If we can get these parameters theta from our users, then it turns out that it becomes possible to try to infer what are the values of x1 and x2 for each movie.
+
+![image-20220823163407124](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823163407124.png)
+
+#### 	Optimization algorithm
+
+![image-20220823163636666](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823163636666.png) 
+
+#### 	Collaborative filtering
+
+![image-20220823164001183](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823164001183.png)
+
+###  Collaborative filtering algorithm
+
+####  	Optimization objective 
+
+In order to solve simultaneously for x and theta
+
+![image-20220823165100964](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823165100964.png)
+
+Tips:
+
+- We are now learning the all of the features, so there is no need to hard code the feature that is always equal to one. Because theta times x may be equal to 1, such as x~1~*θ~1~=1, so we don't need to set a bias term as constant 1
+
+![image-20220823170202202](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823170202202.png)
+
+#### Collaborative filtering algorithm
+
+![image-20220823170758151](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823170758151.png)
+
+### 	Vectorization: Low rank matrix factorization
+
+#### 	Collaborative filtering
+
+![image-20220823190618202](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823190618202.png)
+
+#### Low rank matrix factorization   
+
+![image-20220823191049881](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823191049881.png)
+
+Low matrix: what if matrix A~m×n~， and r(A)  very less than m and n. 
+
+A "low rank matrix" indicates that rows and columns are related. In layman's terms, it is possible to use part of the row and column to represent another part of the row or column.
+
+#### 	Finding related movies
+
+![image-20220823192257614](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823192257614.png)
+
+### 	Implementational detail: Mean normalization
+
+####  User who have no any movies![image-20220823192744134](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823192744134.png)
+
+#### 	Mean normalization
+
+![image-20220823193538358](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823193538358.png)
+
+## 	Large scale machine learning 
+
+### 	Learning with large datasets
+
+#### 	Computational problem
+
+![image-20220823194432800](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823194432800.png)
+
+If the data sets is so large, sometimes we face with the computation problem in gradient descent. There are two approach to approve: Stochastic Gradient Descent and 
+
+### Stochastic Gradient Descent	 
+
+#### 	Linear regression with gradient descent
+
+![image-20220823200721021](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823200721021.png)
+
+![image-20220823200835608](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823200835608.png)
+
+In order to deal with the large number of data sets, there are more efficiency algorithm: Stochastic Gradient Descent and Mini-Batch Gradient Descent.
+
+#### 	Stochastic gradient descent 
+
+ ![image-20220823201711150](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823201711150.png)
+
+
+
+![image-20220823202101686](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823202101686.png)
+
+Usually running stochastic gradient descent, we get a parameter near the global minimum and that's good enough for essentially any most practical purposes.
+
+Tips: 
+
+- Sometimes we may end up repeating this inner loop anywhere from once to ten times.
+
+### 	Mini-Batch Gradient Descent
+
+#### 	Different Gradient Descent
+
+![image-20220823204810431](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823204810431.png)
+
+#### 	Mini-batch gradient descent
+
+![image-20220823204837363](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823204837363.png)
+
+### 	Stochastic Gradient Descent Convergence
+
+#### 	Checking for convergence
+
+![image-20220823211029296](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823211029296.png)
+
+![image-20220823211833216](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823211833216.png)
+
+Tips:
+
+- The number of the iterations is the number of examples we have computed, such as iteration = 3 , that means we have computed the x^(1)^ x^(2)^ x^(3)^.
+
+#### 	Learning rate
+
+![image-20220823212330378](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823212330378.png)
+
+###  Online learning
+
+![image-20220823213629970](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823213629970.png)
+
+#### 	Example: predicted CTR(click-through rate)
+
+![image-20220823214221858](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823214221858.png)
+
+### 	Map-reduce and data parallelism
+
+![image-20220823215045243](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823215045243.png)
+
+#### 	Map-reduce
+
+![image-20220823215136502](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823215136502.png)
+
+![image-20220823215350253](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823215350253.png)
+
+## 	 Application example: Photo OCR
+
+### 	Problem description and pipeline
+
+![image-20220823215658432](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823215658432.png)
+
+![image-20220823215743783](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823215743783.png)
+
+![image-20220823215820897](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823215820897.png)
+
+### 	Sliding windows
+
+![image-20220823220107365](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823220107365.png)
+
+![image-20220823220627893](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823220627893.png)
+
+![image-20220823220647875](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823220647875.png)
+
+### 	Getting lots of data: Artificial data synthesis
+
+![image-20220823220919960](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823220919960.png)
+
+![image-20220823221002974](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823221002974.png)
+
+![image-20220823221114491](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823221114491.png)
+
+![image-20220823221143851](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823221143851.png)
+
+![image-20220823221533052](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823221533052.png)
+
+### 	Ceiling analysis: What part of the pipeline to work on next
+
+![image-20220823222018492](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823222018492.png)
+
+![image-20220823222139232](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823222139232.png)
+
+![image-20220823222233703](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823222233703.png)
+
+![image-20220823222249991](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823222249991.png)
+
+## 	Summary
+
+![image-20220823222608944](C:\Users\huawei\AppData\Roaming\Typora\typora-user-images\image-20220823222608944.png)
